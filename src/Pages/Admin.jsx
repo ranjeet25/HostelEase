@@ -47,7 +47,7 @@ function Admin() {
               Admin Name
             </span>
             <span className=" font-normal ml-1 text-[12px] bg-yellow-500 px-4 py-1 rounded-md text-slate-100">
-              Ranjeet Saw
+              Alex John
             </span>
             <span className="text-[15px] ml-4 text-gray-700 font-bold">
               Admin ID
