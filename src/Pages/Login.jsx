@@ -1,8 +1,39 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 
 function Login() {
+  let navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
+
+  const sendData = (e) => {
+    e.preventDefault();
+
+    fetch("http://localhost:5000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email: email, pass: pass }),
+    }).then((res) => {});
+
+    fetch("http://localhost:5000/login")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.password == pass) {
+          alert("login sucessfull");
+          if (data.role == "Student") {
+            navigate("/student");
+          } else if (data.role == "Admin") {
+            navigate("/admin");
+          }
+        } else {
+          alert("Wrong Login Info");
+        }
+      });
+  };
+
   return (
     <div>
       <div className="px-12 shadow-md">
@@ -30,8 +61,9 @@ function Login() {
 
           {/* nav - end */}
           {/* buttons - start */}
+
           <a
-            href="#"
+            href="/register"
             className="hidden lg:inline-block bg-gray-200 hover:bg-gray-300 focus-visible:ring ring-yellow-300 text-gray-500 active:text-gray-700 text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3"
           >
             Register
@@ -74,6 +106,9 @@ function Login() {
                 <input
                   name="email"
                   className="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
                 />
               </div>
               <div>
@@ -86,13 +121,19 @@ function Login() {
                 <input
                   name="password"
                   className="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"
+                  onChange={(e) => {
+                    setPass(e.target.value);
+                  }}
                 />
               </div>
-              <Link to="/admin">
-                <button className="block bg-gray-800 hover:bg-gray-700 active:bg-gray-600 focus-visible:ring ring-gray-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3">
-                  Log in
-                </button>
-              </Link>
+
+              <button
+                className="block bg-gray-800 hover:bg-gray-700 active:bg-gray-600 focus-visible:ring ring-gray-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3"
+                type="submit"
+                onClick={sendData}
+              >
+                Log in
+              </button>
             </div>
             <div className="flex justify-center items-center bg-gray-100 p-4">
               <p className="text-gray-500 text-sm text-center">

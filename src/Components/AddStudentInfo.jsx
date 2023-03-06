@@ -1,16 +1,14 @@
-import React from "react";
-import { useState } from "react";
+import { React, useState } from "react";
 
-function AddStudent() {
+function AddStudentInfo() {
   const [formData, setFormData] = useState({
     firstname: " ",
     lastname: " ",
-    room_type: " ",
-    email: " ",
-    hostelId: " ",
+    year_ofStudy: " ",
+    branch: " ",
+    year_ofJoining: " ",
     collegeId: " ",
-    year_of_study: " ",
-    room_number: " ",
+    payment_status: " ",
   });
 
   const changeEventHandler = (event) => {
@@ -31,25 +29,26 @@ function AddStudent() {
   const sendData = (e) => {
     e.preventDefault();
 
-    console.log(formData);
+    // console.log(formData);
 
-    fetch("http://localhost:5000/addStudent", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    }).then((res) => {
-      console.log(res);
-    });
+    // fetch("http://localhost:5000/addStudentInfo", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(formData),
+    // }).then((res) => {
+    //   console.log(res);
+    // });
 
     alert("data submited");
     // navigate("/login");
   };
 
   return (
-    <div className=" w-3/4 h-[95vh] bg-gray-100 ml-12 rounded-md shadow-md">
-      <section className="flex flex-col justify-around  items-center w-[100%] h-[95vh]">
+    <div className="m-6 bg-gray-200 w-3/4">
+      {" "}
+      <section className="flex flex-col justify-around  items-center w-[100%] h-full">
         <form className="grid grid-cols-6 gap-4 bg-slate-50 p-8 rounded-md">
           <div className="col-span-3">
             <label className="block text-xs font-medium text-gray-700">
@@ -79,43 +78,51 @@ function AddStudent() {
               htmlFor="Email"
               className="block text-xs font-medium text-gray-700"
             >
-              Select Room
+              year Of Study
             </label>
             <select
               className="mt-1 w-full h-10 px-3 border border-gray-300  rounded-md shadow-sm sm:text-sm"
               onChange={changeEventHandler}
-              name="room_type"
+              name="year_ofStudy"
             >
-              <option>Normal</option>
-              <option>Delux</option>
-              <option>Premium</option>
+              <option>Select</option>
+              <option>First</option>
+              <option>second</option>
+              <option>Third</option>
+              <option>Fourth</option>
             </select>
           </div>
           {/* Email */}
           <div className="col-span-6">
             <label
-              htmlFor="Email"
+              htmlFor="branch"
               className="block text-xs font-medium text-gray-700"
             >
-              Email
+              Branch
             </label>
-            <input
-              type="text"
+            <select
               className="mt-1 w-full h-10 px-3 border border-gray-300  rounded-md shadow-sm sm:text-sm"
               onChange={changeEventHandler}
-              name="email"
-            />
+              name="branch"
+            >
+              <option>Select</option>
+              <option>Computer Science</option>
+              <option>Information Technology</option>
+              <option>Mechanical</option>
+              <option>civil</option>
+              <option>others</option>
+            </select>
           </div>
           <div className="col-span-6">
             <label className="block text-xs font-medium text-gray-700">
-              Hostel ID
+              year of joining
             </label>
             <input
               type="text"
               id="hostelID"
               className="mt-1 w-full h-10 px-3 border border-gray-300  rounded-md shadow-sm sm:text-sm"
               onChange={changeEventHandler}
-              name="hostelId"
+              name="year_ofJoining"
             />
           </div>
           {/* clg id */}
@@ -133,46 +140,28 @@ function AddStudent() {
           </div>
           <div className="col-span-6">
             <label className="block text-xs font-medium text-gray-700">
-              Year of Study
+              payment Status
             </label>
             <select
               id="year"
               className="mt-1 w-full h-10 px-3 border border-gray-300  rounded-md shadow-sm sm:text-sm"
               placeholder="Select Role"
               onChange={changeEventHandler}
-              name="year_of_study"
+              name="payment_status"
             >
-              <option>First Year</option>
-              <option>Second</option>
-              <option>Third</option>
-              <option>Four</option>
+              <option>select</option>
+              <option>Paid</option>
+              <option>Pending</option>
             </select>
-          </div>
-
-          {/* Room ID */}
-          <div className="col-span-6">
-            <label
-              htmlFor="Email"
-              className="block text-xs font-medium text-gray-700"
-            >
-              Allot Room Number
-            </label>
-            <input
-              type="email"
-              id="Email"
-              className="mt-1 w-full h-10 px-3 border border-gray-300  rounded-md shadow-sm sm:text-sm"
-              onChange={changeEventHandler}
-              name="room_number"
-            />
           </div>
 
           <div className="col-span-6">
             <button
-              className="block w-full rounded-md bg-black p-2.5 text-sm text-white transition hover:shadow-lg"
+              className="block w-full rounded-md bg-green-500 hover:bg-green-600 p-2.5 text-sm text-white transition hover:shadow-lg"
               type="submit"
               onClick={sendData}
             >
-              Add Student
+              Add details
             </button>
           </div>
         </form>
@@ -181,4 +170,4 @@ function AddStudent() {
   );
 }
 
-export default AddStudent;
+export default AddStudentInfo;

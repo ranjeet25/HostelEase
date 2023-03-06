@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import RemoveStudent from "../assets/RemoveStudent";
 import AddStudent from "../Components/AddStudent";
 import RoomDetails from "../Components/RoomDetails";
 import Sidebar from "../Components/Sidebar";
 import StudentDetails from "../Components/StudentDetails";
+import RemoveStudent from "../Components/RemoveStudent";
 
 function Admin() {
   const [addStudent, openAddStudent] = useState(true);
@@ -46,13 +46,13 @@ function Admin() {
             <span className="text-[15px] ml-4 text-gray-700 font-bold">
               Admin Name
             </span>
-            <span className=" font-normal ml-1 text-[12px] bg-yellow-500 px-4 py-1 rounded-md text-slate-100">
-              Alex John
+            <span className=" font-bold ml-1 text-[12px] bg-yellow-500 px-4 py-1 rounded-md text-slate-100">
+              Nilesh Yadav
             </span>
             <span className="text-[15px] ml-4 text-gray-700 font-bold">
               Admin ID
             </span>
-            <span className=" font-normal ml-1 text-[12px] bg-yellow-500 px-4 py-1 rounded-md text-slate-100">
+            <span className=" font-bold ml-1 text-[12px] bg-yellow-500 px-4 py-1 rounded-md text-slate-100">
               123456789
             </span>
           </div>
@@ -109,20 +109,19 @@ function Admin() {
           Room Details
         </div>
 
-        <div className=" px-4 py-3 mt-3 font-bold flex items-center rounded-md  duration-300 cursor-pointer bg-gray-200 hover:bg-yellow-600 text-gray-600 hover:text-gray-100 ">
-          Grievances
-        </div>
-
-        <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer bg-gray-500 hover:bg-red-400 text-black">
-          <i className="bi bi-box-arrow-in-right" />
-          <span className="text-[15px] ml-4 text-gray-200 font-bold">
-            Logout
-          </span>
-        </div>
+        <Link to="/">
+          <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer bg-gray-500 hover:bg-red-400 text-black">
+            <i className="bi bi-box-arrow-in-right" />
+            <span className="text-[15px] ml-4 text-gray-200 font-bold">
+              Logout
+            </span>
+          </div>
+        </Link>
       </div>
 
       {addStudent && <AddStudent></AddStudent>}
       {removeStudent && <RemoveStudent></RemoveStudent>}
+
       {studentDetails && <StudentDetails></StudentDetails>}
       {roomDetails && <RoomDetails></RoomDetails>}
     </div>

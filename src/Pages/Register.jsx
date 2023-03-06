@@ -1,6 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 
 function Register() {
+  const [formData, setFormData] = useState({
+    firstname: " ",
+    lastname: " ",
+    role: " ",
+    email: " ",
+    hostelId: " ",
+    username: " ",
+    pass: " ",
+  });
+
+  const changeEventHandler = (event) => {
+    setFormData(() => ({
+      ...formData,
+      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value,
+    }));
+    // console.log(formData);
+  };
+
+  const sendData = (e) => {
+    e.preventDefault();
+
+    fetch("http://localhost:5000/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    }).then((res) => {
+      console.log(res);
+    });
+
+    alert("data submited");
+    // navigate("/login");
+  };
+
   return (
     <div>
       <div className="px-12 shadow-md">
@@ -23,7 +64,7 @@ function Register() {
             HostelEase
           </a>
           <a
-            href="#"
+            href="/login"
             className="hidden lg:inline-block bg-gray-200 hover:bg-gray-300 focus-visible:ring ring-yellow-300 text-gray-500 active:text-gray-700 text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3"
           >
             Login
@@ -50,7 +91,7 @@ function Register() {
         </header>
       </div>
       <section className="flex flex-col justify-around  items-center w-[100%] h-[90vh] ">
-        <form className="grid grid-cols-6 gap-4">
+        <form onSubmit={sendData} className="grid grid-cols-6 gap-4">
           <div className="col-span-3">
             <label
               htmlFor="FirstName"
@@ -60,8 +101,9 @@ function Register() {
             </label>
             <input
               type="text"
-              id="FirstName"
               className="mt-1 w-full h-10 px-3 border border-gray-300  rounded-md shadow-sm sm:text-sm"
+              onChange={changeEventHandler}
+              name="firstname"
             />
           </div>
           <div className="col-span-3">
@@ -75,6 +117,8 @@ function Register() {
               type="text"
               id="LastName"
               className="mt-1 w-full h-10 px-3 border border-gray-300  rounded-md shadow-sm sm:text-sm"
+              onChange={changeEventHandler}
+              name="lastname"
             />
           </div>
           {/* ROLE */}
@@ -89,7 +133,10 @@ function Register() {
               id="Country"
               className="mt-1 w-full h-10 px-3 border border-gray-300  rounded-md shadow-sm sm:text-sm"
               placeholder="Select Role"
+              onChange={changeEventHandler}
+              name="role"
             >
+              <option>Select</option>
               <option>Student</option>
               <option>Admin</option>
               <option>Visitor</option>
@@ -107,27 +154,26 @@ function Register() {
               type="email"
               id="Email"
               className="mt-1 w-full h-10 px-3 border border-gray-300  rounded-md shadow-sm sm:text-sm"
+              onChange={changeEventHandler}
+              name="email"
             />
           </div>
           {/* UNIQUE ID */}
           <div className="col-span-6">
-            <label
-              htmlFor="Email"
-              className="block text-xs font-medium text-gray-700"
-            >
+            <label className="block text-xs font-medium text-gray-700">
               Hostel ID
             </label>
             <input
-              type="email"
-              id="Email"
               className="mt-1 w-full h-10 px-3 border border-gray-300  rounded-md shadow-sm sm:text-sm"
+              onChange={changeEventHandler}
+              name="hostelId"
             />
           </div>
 
           {/* {USERNAME} */}
           <div className="col-span-6">
             <label
-              htmlFor="Phone"
+              htmlFor="username"
               className="block text-xs font-medium text-gray-700"
             >
               Set Username
@@ -136,25 +182,32 @@ function Register() {
               type="tel"
               id="Phone"
               className="mt-1 w-full h-10 px-3 border border-gray-300  rounded-md shadow-sm sm:text-sm"
+              onChange={changeEventHandler}
+              name="username"
             />
           </div>
 
           <div className="col-span-6">
             <label
-              htmlFor="Phone"
+              htmlFor="password"
               className="block text-xs font-medium text-gray-700"
             >
               Set Password
             </label>
             <input
-              type="tel"
-              id="Phone"
+              type="password"
               className="mt-1 w-full h-10 px-3 border border-gray-300  rounded-md shadow-sm sm:text-sm"
+              onChange={changeEventHandler}
+              name="pass"
             />
           </div>
 
           <div className="col-span-6">
-            <button className="block w-full rounded-md bg-black p-2.5 text-sm text-white transition hover:shadow-lg">
+            <button
+              type="submit"
+              // onClick={sendData}
+              className="block w-full rounded-md bg-black p-2.5 text-sm text-white transition hover:shadow-lg"
+            >
               Register
             </button>
           </div>
