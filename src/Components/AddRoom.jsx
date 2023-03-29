@@ -42,6 +42,7 @@ function AddRoom() {
                   onChange={(e) => {
                     setRoomNum(e.target.value);
                   }}
+                  required
                 />
               </div>
 
@@ -58,6 +59,7 @@ function AddRoom() {
                   onChange={(e) => {
                     setRoomStatus(e.target.value);
                   }}
+                  required
                 >
                   <option>Select</option>
                   <option>Empty</option>

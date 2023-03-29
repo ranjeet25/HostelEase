@@ -5,8 +5,9 @@ import RoomDetails from "../Components/RoomDetails";
 import Sidebar from "../Components/Sidebar";
 import StudentDetails from "../Components/StudentDetails";
 import RemoveStudent from "../Components/RemoveStudent";
+import ViewPayments from "../Components/ViewPayments";
 
-function Admin() {
+function Secretary() {
   const [addStudent, openAddStudent] = useState(true);
   const [removeStudent, openRemoveStudent] = useState(false);
   const [studentDetails, openStudentDetails] = useState(false);
@@ -27,7 +28,7 @@ function Admin() {
                   width={95}
                   height={94}
                   viewBox="0 0 95 94"
-                  className="w-6 h-auto text-yellow-500"
+                  className="w-6 h-auto text-green-500"
                   fill="currentColor"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -38,21 +39,21 @@ function Admin() {
             </Link>
 
             <h1 className="font-bold text-gray-200 text-[15px] ml-3">
-              Admin Panel
+              secretary Panel
             </h1>
           </div>
           <div className="my-2 bg-gray-400 h-[1px] mb-4" />
           <div className=" grid grid-cols-2 gap-1 p-4 w-full h-26 bg-gray-100 rounded-md ">
             <span className="text-[15px] ml-4 text-gray-700 font-bold">
-              Admin Name
+              secretary Name
             </span>
-            <span className=" font-bold ml-1 text-[12px] bg-yellow-500 px-4 py-1 rounded-md text-slate-100">
-              Nilesh Yadav
+            <span className=" font-bold ml-1 text-[12px] bg-green-500 px-4 py-1 rounded-md text-slate-100">
+              Hemant Yadav
             </span>
             <span className="text-[15px] ml-4 text-gray-700 font-bold">
-              Admin ID
+              secretary ID
             </span>
-            <span className=" font-bold ml-1 text-[12px] bg-yellow-500 px-4 py-1 rounded-md text-slate-100">
+            <span className=" font-bold ml-1 text-[12px] bg-green-500 px-4 py-1 rounded-md text-slate-100">
               123456789
             </span>
           </div>
@@ -68,7 +69,7 @@ function Admin() {
           className=" w-full p-2.5 mt-8 flex items-center rounded-md px-4 duration-300 cursor-pointer bg-gray-700 hover:bg-blue-600 text-black"
         >
           <span className="text-[15px] ml-4 text-gray-200 font-bold">
-            Add Student
+            View Payments
           </span>
         </button>
         <div
@@ -92,7 +93,7 @@ function Admin() {
             openStudentDetails(true);
             openRoomDetails(false);
           }}
-          className=" px-4 py-3 mt-12 font-bold flex items-center rounded-md  duration-300 cursor-pointer bg-gray-200 hover:bg-yellow-600 text-gray-600 hover:text-gray-100 "
+          className=" px-4 py-3 mt-12 font-bold flex items-center rounded-md  duration-300 cursor-pointer bg-gray-200 hover:bg-green-600 text-gray-600 hover:text-gray-100 "
         >
           Student Details
         </div>
@@ -104,7 +105,7 @@ function Admin() {
             openStudentDetails(false);
             openRoomDetails(true);
           }}
-          className=" px-4 py-3 mt-3 font-bold flex items-center rounded-md  duration-300 cursor-pointer bg-gray-200 hover:bg-yellow-600 text-gray-600 hover:text-gray-100 "
+          className=" px-4 py-3 mt-3 font-bold flex items-center rounded-md  duration-300 cursor-pointer bg-gray-200 hover:bg-green-600 text-gray-600 hover:text-gray-100 "
         >
           Room Details
         </div>
@@ -127,7 +128,7 @@ function Admin() {
         </Link>
       </div>
 
-      {addStudent && <AddStudent></AddStudent>}
+      {addStudent && <ViewPayments></ViewPayments>}
       {removeStudent && <RemoveStudent></RemoveStudent>}
 
       {studentDetails && <StudentDetails></StudentDetails>}
@@ -136,4 +137,4 @@ function Admin() {
   );
 }
 
-export default Admin;
+export default Secretary;

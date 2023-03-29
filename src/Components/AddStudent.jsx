@@ -60,6 +60,7 @@ function AddStudent() {
               className="mt-1 w-full h-10 px-3 border border-gray-300  rounded-md shadow-sm sm:text-sm"
               onChange={changeEventHandler}
               name="firstname"
+              required
             />
           </div>
           <div className="col-span-3">
@@ -71,6 +72,7 @@ function AddStudent() {
               className="mt-1 w-full h-10 px-3 border border-gray-300  rounded-md shadow-sm sm:text-sm"
               onChange={changeEventHandler}
               name="lastname"
+              required
             />
           </div>
           {/* Room type */}
@@ -85,6 +87,7 @@ function AddStudent() {
               className="mt-1 w-full h-10 px-3 border border-gray-300  rounded-md shadow-sm sm:text-sm"
               onChange={changeEventHandler}
               name="room_type"
+              required
             >
               <option>Normal</option>
               <option>Delux</option>
@@ -104,6 +107,7 @@ function AddStudent() {
               className="mt-1 w-full h-10 px-3 border border-gray-300  rounded-md shadow-sm sm:text-sm"
               onChange={changeEventHandler}
               name="email"
+              required
             />
           </div>
           <div className="col-span-6">
@@ -116,6 +120,7 @@ function AddStudent() {
               className="mt-1 w-full h-10 px-3 border border-gray-300  rounded-md shadow-sm sm:text-sm"
               onChange={changeEventHandler}
               name="hostelId"
+              required
             />
           </div>
           {/* clg id */}
@@ -141,6 +146,7 @@ function AddStudent() {
               placeholder="Select Role"
               onChange={changeEventHandler}
               name="year_of_study"
+              required
             >
               <option>First Year</option>
               <option>Second</option>
@@ -163,6 +169,7 @@ function AddStudent() {
               className="mt-1 w-full h-10 px-3 border border-gray-300  rounded-md shadow-sm sm:text-sm"
               onChange={changeEventHandler}
               name="room_number"
+              required
             />
           </div>
 

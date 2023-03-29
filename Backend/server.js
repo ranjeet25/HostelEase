@@ -12,6 +12,7 @@ app.use(
 );
 
 // ******* MONGOOSED || MONGODB ***********
+// ******* DO NOT CHANGE MONGOURL ***********
 
 const mongourl =
   "mongodb+srv://ranjeet:admin@cluster0.qnesp8x.mongodb.net/HostelEase?retryWrites=true&w=majority";
@@ -35,9 +36,10 @@ const userSchema = new mongoose.Schema({
   Lastname: String,
   role: String,
   email: String,
-  hostelId: String,
+  adhaar: String,
   username: String,
   password: String,
+  address: String,
 });
 
 const User = mongoose.model("registrations", userSchema);
@@ -48,9 +50,10 @@ app.post("/register", (req, res) => {
     Lastname: req.body.lastname,
     role: req.body.role,
     email: req.body.email,
-    hostelId: req.body.hostelId,
+    adhaar: req.body.hostelId,
     username: req.body.username,
     password: req.body.pass,
+    address: req.body.address,
   }).catch((err) => console.log(err));
 
   //   console.log("sucess");
@@ -161,10 +164,11 @@ app.delete("/studentData", (req, res) => {
 
 // ******* LOGIN ROUTE ***********
 
-var userdata;
+var userdata = new Object();
 var studentEmail;
 app.post("/login", (req, res) => {
   var email = req.body.email;
+  console.log(email);
   studentEmail = email;
   var password = req.body.pass;
 
@@ -174,6 +178,7 @@ app.post("/login", (req, res) => {
 });
 
 app.get("/login", (req, res) => {
+  console.log(userdata);
   res.send(userdata);
 });
 

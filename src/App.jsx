@@ -5,6 +5,7 @@ import Landing from "./Pages/Landing";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import Student from "./Pages/Student";
+import Secretary from "./Pages/Secretary";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Route path="/register" element={<Register></Register>}></Route>
       <Route path="/admin" element={<Admin></Admin>}></Route>
       <Route path="/student" element={<Student></Student>}></Route>
+      <Route path="/secretary" element={<Secretary></Secretary>}></Route>
     </Routes>
   );
 }

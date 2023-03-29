@@ -23,7 +23,6 @@ function RoomDetails() {
                   <th className="px-4 py-3">SR.No</th>
                   <th className="px-4 py-3">Room Nos</th>
                   <th className="px-4 py-3">Status</th>
-                  <th className="px-4 py-3">More Details</th>
 
                   {/* <th className="px-4 py-3">Due Date</th> */}
                 </tr>
@@ -52,26 +51,6 @@ function RoomDetails() {
                         <span className="px-2 py-1 font-normal text-sm  leading-tight text-gray-700 bg-gray-100 rounded-sm">
                           {itr.status}
                         </span>
-                      </td>
-                      <td className="px-4 py-3 text-ms font-semibold border">
-                        <div className="w-full flex justify-center">
-                          <button>
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke-width="1.5"
-                              stroke="currentColor"
-                              class="w-8 h-8 p-1 rounded-full bg-green-50 text-green-500 "
-                            >
-                              <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                              />
-                            </svg>
-                          </button>
-                        </div>
                       </td>
                     </tr>
                   );

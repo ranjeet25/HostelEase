@@ -78,7 +78,7 @@ function Student() {
           }}
         >
           <span className="text-[15px] ml-4 text-gray-200 font-bold">
-            Add Info
+            Add Payment
           </span>
         </div>
         <Link to="/">
@@ -86,6 +86,14 @@ function Student() {
             <i className="bi bi-box-arrow-in-right" />
             <span className="text-[15px] ml-4 text-gray-200 font-bold">
               Logout
+            </span>
+          </div>
+        </Link>
+        <Link to="/">
+          <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer bg-gray-500 hover:bg-red-400 text-black">
+            <i className="bi bi-box-arrow-in-right" />
+            <span className="text-[15px] ml-4 text-gray-200 font-bold">
+              Home
             </span>
           </div>
         </Link>

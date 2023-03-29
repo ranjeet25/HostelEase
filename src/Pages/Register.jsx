@@ -9,11 +9,13 @@ function Register() {
     hostelId: " ",
     username: " ",
     pass: " ",
+    address: " ",
   });
 
   const changeEventHandler = (event) => {
     setFormData(() => ({
       ...formData,
+      [event.target.name]: event.target.value,
       [event.target.name]: event.target.value,
       [event.target.name]: event.target.value,
       [event.target.name]: event.target.value,
@@ -104,6 +106,7 @@ function Register() {
               className="mt-1 w-full h-10 px-3 border border-gray-300  rounded-md shadow-sm sm:text-sm"
               onChange={changeEventHandler}
               name="firstname"
+              required
             />
           </div>
           <div className="col-span-3">
@@ -119,6 +122,7 @@ function Register() {
               className="mt-1 w-full h-10 px-3 border border-gray-300  rounded-md shadow-sm sm:text-sm"
               onChange={changeEventHandler}
               name="lastname"
+              required
             />
           </div>
           {/* ROLE */}
@@ -135,6 +139,7 @@ function Register() {
               placeholder="Select Role"
               onChange={changeEventHandler}
               name="role"
+              required
             >
               <option>Select</option>
               <option>Student</option>
@@ -156,17 +161,31 @@ function Register() {
               className="mt-1 w-full h-10 px-3 border border-gray-300  rounded-md shadow-sm sm:text-sm"
               onChange={changeEventHandler}
               name="email"
+              required
             />
           </div>
           {/* UNIQUE ID */}
           <div className="col-span-6">
             <label className="block text-xs font-medium text-gray-700">
-              Hostel ID
+              Aadhar Card number{" "}
+              <span className="text-red-500">12 digit only*</span>
             </label>
             <input
               className="mt-1 w-full h-10 px-3 border border-gray-300  rounded-md shadow-sm sm:text-sm"
               onChange={changeEventHandler}
               name="hostelId"
+              required
+            />
+          </div>
+          <div className="col-span-6">
+            <label className="block text-xs font-medium text-gray-700">
+              Address
+            </label>
+            <input
+              className=" h-14 mt-1 w-full  px-3 border border-gray-300  rounded-md shadow-sm sm:text-sm"
+              onChange={changeEventHandler}
+              name="address"
+              required
             />
           </div>
 
@@ -184,6 +203,7 @@ function Register() {
               className="mt-1 w-full h-10 px-3 border border-gray-300  rounded-md shadow-sm sm:text-sm"
               onChange={changeEventHandler}
               name="username"
+              required
             />
           </div>
 
@@ -199,6 +219,7 @@ function Register() {
               className="mt-1 w-full h-10 px-3 border border-gray-300  rounded-md shadow-sm sm:text-sm"
               onChange={changeEventHandler}
               name="pass"
+              required
             />
           </div>
 
