@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 
-function StudentDetails() {
+function ViewGravieance() {
   const [data, getData] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/studentData")
+    fetch("http://localhost:5000/grievanceData")
       .then((res) => res.json())
       .then((data) => {
         //console.log(data);
@@ -13,7 +13,6 @@ function StudentDetails() {
   }, []);
 
   console.log(data);
-
   return (
     <div className=" w-3/4 h-[95vh] bg-gray-300 ml-12 rounded-md shadow-md">
       <section className="container mx-auto p-6 font-mono  ">
@@ -22,10 +21,11 @@ function StudentDetails() {
             <table className="w-full">
               <thead>
                 <tr className="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
-                  <th className="px-4 py-3">Name</th>
-                  <th className="px-4 py-3">Hostel ID</th>
-                  <th className="px-4 py-3">Room No</th>
+                  <th className="px-4 py-3">Nos</th>
                   <th className="px-4 py-3">Email</th>
+                  <th className="px-4 py-3">Complaint Dept</th>
+                  <th className="px-4 py-3">Complaint</th>
+
                   {/* <th className="px-4 py-3">Due Date</th> */}
                 </tr>
               </thead>
@@ -41,29 +41,32 @@ function StudentDetails() {
                             </p>
                             <div className="absolute" aria-hidden="true" />
                           </div>
+                        </div>
+                      </td>
+                      <td className="px-4 py-3 border">
+                        <div className="flex items-center text-sm">
                           <div>
                             <p className="font-semibold text-black">
-                              {itr.firstname}
+                              {itr.email}
                             </p>
-                            <p className="text-xs text-gray-600">
-                              {itr.lastname}
+                          </div>
+                        </div>
+                      </td>
+                      <td className="px-4 py-3 border">
+                        <div className="flex items-center text-sm">
+                          <div>
+                            <p className="font-semibold text-black">
+                              {itr.department}
                             </p>
                           </div>
                         </div>
                       </td>
                       <td className="px-4 py-3 text-ms font-semibold border">
-                        <span className="px-2 py-1 font-normal text-sm  leading-tight text-yellow-700 bg-yellow-100 rounded-sm">
-                          {itr.hostelId}
+                        <span className="px-2 py-1 font-normal text-sm  leading-tight text-violet-700 bg-violet-100 rounded-sm">
+                          {itr.complaint}
                         </span>
                       </td>
-                      <td className="px-4 py-3 text-ms font-semibold border">
-                        {itr.room_number}
-                      </td>
-                      <td className="px-4 py-3 text-xs border">
-                        <span className="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm">
-                          {itr.email}
-                        </span>
-                      </td>
+
                       {/* <td className="px-4 py-3 text-sm border">6/4/2000</td> */}
                     </tr>
                   );
@@ -77,4 +80,4 @@ function StudentDetails() {
   );
 }
 
-export default StudentDetails;
+export default ViewGravieance;

@@ -12,6 +12,8 @@ function Register() {
     address: " ",
   });
 
+  const [error, setError] = useState({});
+
   const changeEventHandler = (event) => {
     setFormData(() => ({
       ...formData,
@@ -24,24 +26,49 @@ function Register() {
       [event.target.name]: event.target.value,
       [event.target.name]: event.target.value,
     }));
+
     // console.log(formData);
+  };
+
+  var count = 0;
+
+  const validation = (values) => {
+    var error = {};
+
+    // console.log(values.hostelId.length);
+    if (values.hostelId.length != 12) {
+      error.hostelId = "Enter valid Adhaar number";
+      count += 1;
+    }
+    if (values.pass.length != 8) {
+      error.pass = "Enter 8 digit password";
+      count += 1;
+    }
+    return error;
   };
 
   const sendData = (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:5000/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    }).then((res) => {
-      console.log(res);
-    });
+    setError(validation(formData));
 
-    alert("data submited");
-    // navigate("/login");
+    console.log(count);
+
+    if (count == 0) {
+      fetch("http://localhost:5000/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }).then((res) => {
+        if (res.status == 200) {
+          alert("data added sucessfully");
+        } else {
+          alert("There is error");
+        }
+      });
+    }
   };
 
   return (
@@ -108,6 +135,7 @@ function Register() {
               name="firstname"
               required
             />
+            <p className="text-sm text-red-500 ">{error.firstname}</p>
           </div>
           <div className="col-span-3">
             <label
@@ -124,14 +152,17 @@ function Register() {
               name="lastname"
               required
             />
+            {error.lastname && (
+              <p className="text-sm text-red-500 ">{error.lastname}</p>
+            )}
           </div>
-          {/* ROLE */}
+          {/* Gender */}
           <div className="col-span-6">
             <label
               htmlFor="Email"
               className="block text-xs font-medium text-gray-700"
             >
-              Select Role
+              Select Gender
             </label>
             <select
               id="Country"
@@ -142,9 +173,9 @@ function Register() {
               required
             >
               <option>Select</option>
-              <option>Student</option>
-              <option>Admin</option>
-              <option>Visitor</option>
+              <option>Male</option>
+              <option>Female</option>
+              <option>Others</option>
             </select>
           </div>
           {/* EMAIL */}
@@ -173,9 +204,12 @@ function Register() {
             <input
               className="mt-1 w-full h-10 px-3 border border-gray-300  rounded-md shadow-sm sm:text-sm"
               onChange={changeEventHandler}
+              type="text"
               name="hostelId"
-              required
             />
+            {error.hostelId && (
+              <p className="text-sm text-red-500 ">{error.hostelId}</p>
+            )}
           </div>
           <div className="col-span-6">
             <label className="block text-xs font-medium text-gray-700">
@@ -198,7 +232,7 @@ function Register() {
               Set Username
             </label>
             <input
-              type="tel"
+              type="text"
               id="Phone"
               className="mt-1 w-full h-10 px-3 border border-gray-300  rounded-md shadow-sm sm:text-sm"
               onChange={changeEventHandler}
@@ -221,6 +255,9 @@ function Register() {
               name="pass"
               required
             />
+            {error.pass && (
+              <p className="text-sm text-red-500 ">{error.pass}</p>
+            )}
           </div>
 
           <div className="col-span-6">

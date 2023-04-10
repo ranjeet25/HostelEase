@@ -32,14 +32,11 @@ function RoomDetails() {
                   return (
                     <tr className="text-gray-700">
                       <td className="px-4 py-3 border">
-                        <div className="relative w-8 h-8 mr-3 rounded-full md:block">
+                        <div className="relative w-8 h-8  ">
                           <p className="font-semibold text-pink-600">
                             {index + 1}
                           </p>
-                          <div
-                            className="absolute inset-0 rounded-full shadow-inner"
-                            aria-hidden="true"
-                          />
+                          <div className="absolute " aria-hidden="true" />
                         </div>
                       </td>
                       <td className="px-4 py-3 border">

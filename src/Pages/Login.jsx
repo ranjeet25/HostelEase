@@ -16,25 +16,15 @@ function Login() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ email: email, pass: pass }),
-    }).then((res) => {});
-
-    fetch("http://localhost:5000/login")
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.password == pass) {
-          alert("login sucessfull");
-          if (data.role == "Student") {
-            navigate("/student");
-          } else if (data.role == "Admin") {
-            navigate("/admin");
-          }
-        } else {
-          alert("Wrong Login Info");
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    }).then((res) => {
+      console.log(res.body);
+      if (res.status == 200) {
+        alert("Data found");
+        navigate("/student");
+      } else {
+        alert("Wrong username of password");
+      }
+    });
   };
 
   return (
@@ -125,6 +115,7 @@ function Login() {
                 <input
                   name="password"
                   required
+                  type="password"
                   className="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"
                   onChange={(e) => {
                     setPass(e.target.value);

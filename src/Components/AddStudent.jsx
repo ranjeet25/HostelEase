@@ -126,16 +126,22 @@ function AddStudent() {
           {/* clg id */}
           <div className="col-span-6">
             <label className="block text-xs font-medium text-gray-700">
-              College ID
+              Select Room seater
             </label>
-            <input
-              type="text"
-              id="clgID"
+            <select
+              id="year"
               className="mt-1 w-full h-10 px-3 border border-gray-300  rounded-md shadow-sm sm:text-sm"
+              placeholder="Select Room Seater"
               onChange={changeEventHandler}
               name="collegeId"
-            />
+              required
+            >
+              <option>One seater</option>
+              <option>Two seater</option>
+              <option>Four seater</option>
+            </select>
           </div>
+
           <div className="col-span-6">
             <label className="block text-xs font-medium text-gray-700">
               Year of Study

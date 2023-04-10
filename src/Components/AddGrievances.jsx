@@ -1,6 +1,5 @@
 import { React, useState } from "react";
-
-function ChangePassword() {
+function AddGrievances() {
   const [email, setEmail] = useState();
   const [oldPass, setOldPass] = useState();
   const [newPass, setNewPass] = useState();
@@ -8,8 +7,8 @@ function ChangePassword() {
   const sendData = (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:5000/login", {
-      method: "PUT",
+    fetch("http://localhost:5000/addGrievance", {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
@@ -20,7 +19,7 @@ function ChangePassword() {
       }),
     }).then((res) => {});
 
-    alert("Password Changed");
+    alert("Grievance Added");
   };
   return (
     <div className="m-6 bg-gray-300 w-3/4">
@@ -28,7 +27,7 @@ function ChangePassword() {
       <div class="  flex justify-center items-center w-full h-full">
         <div class="   px-4 md:px-8  ">
           <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-8">
-            Change Password
+            Add Grievances
           </h2>
           <form onSubmit={sendData}>
             <div class=" bg-white max-w-lg border rounded-lg mx-auto">
@@ -38,7 +37,7 @@ function ChangePassword() {
                     for="text"
                     class="inline-block text-gray-800 text-sm sm:text-base mb-2"
                   >
-                    Email
+                    Your Email
                   </label>
                   <input
                     name="email"
@@ -55,17 +54,18 @@ function ChangePassword() {
                     for="text"
                     class="inline-block text-gray-800 text-sm sm:text-base mb-2"
                   >
-                    Old Password
+                    Complaint department
                   </label>
                   <input
                     required
+                    placeholder="example: Mess, room, garden, etc"
+                    type="text"
                     name="oldpaas"
                     class="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"
                     onChange={(e) => {
                       setOldPass(e.target.value);
                     }}
                   />{" "}
-                  <p class="text-red-500 text-xs italic">Required*</p>
                 </div>
 
                 <div>
@@ -73,24 +73,24 @@ function ChangePassword() {
                     for="text"
                     class="inline-block text-gray-800 text-sm sm:text-base mb-2"
                   >
-                    New Password
+                    Your Complaint
                   </label>
-                  <input
+                  <textarea
                     name="newpass"
+                    type="textarea"
                     required
-                    class="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"
+                    class=" w-full h-24 bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"
                     onChange={(e) => {
                       setNewPass(e.target.value);
                     }}
                   />{" "}
-                  <p class="text-red-500 text-xs italic">Required*</p>
                 </div>
 
                 <button
-                  class="block bg-red-500 hover:bg-red-600 active:bg-gray-600 focus-visible:ring ring-gray-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3"
+                  class="block bg-violet-500 hover:bg-violet-600 active:bg-gray-600 focus-visible:ring ring-gray-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3"
                   type="submit"
                 >
-                  Change Password
+                  submit to admin
                 </button>
               </div>
             </div>
@@ -101,4 +101,4 @@ function ChangePassword() {
   );
 }
 
-export default ChangePassword;
+export default AddGrievances;

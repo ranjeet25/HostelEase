@@ -5,12 +5,16 @@ import RoomDetails from "../Components/RoomDetails";
 import Sidebar from "../Components/Sidebar";
 import StudentDetails from "../Components/StudentDetails";
 import RemoveStudent from "../Components/RemoveStudent";
+import AddSecretary from "../Components/AddSecretary";
+import ViewGravieance from "../Components/ViewGravieance";
 
 function Admin() {
   const [addStudent, openAddStudent] = useState(true);
   const [removeStudent, openRemoveStudent] = useState(false);
   const [studentDetails, openStudentDetails] = useState(false);
   const [roomDetails, openRoomDetails] = useState(false);
+  const [addSecretary, setAddSecretary] = useState(false);
+  const [gravience, setGravience] = useState(false);
 
   return (
     <div className="flex  items-center">
@@ -64,6 +68,8 @@ function Admin() {
             openRemoveStudent(false);
             openStudentDetails(false);
             openRoomDetails(false);
+            setAddSecretary(false);
+            setGravience(false);
           }}
           className=" w-full p-2.5 mt-8 flex items-center rounded-md px-4 duration-300 cursor-pointer bg-gray-700 hover:bg-blue-600 text-black"
         >
@@ -77,11 +83,28 @@ function Admin() {
             openAddStudent(false);
             openStudentDetails(false);
             openRoomDetails(false);
+            setAddSecretary(false);
+            setGravience(false);
           }}
           className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer bg-gray-700 hover:bg-red-400 text-black"
         >
           <span className="text-[15px] ml-4 text-gray-200 font-bold">
             Remove Student
+          </span>
+        </div>
+        <div
+          onClick={() => {
+            openRemoveStudent(false);
+            openAddStudent(false);
+            openStudentDetails(false);
+            openRoomDetails(false);
+            setAddSecretary(true);
+            setGravience(false);
+          }}
+          className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer bg-gray-700 hover:bg-red-400 text-black"
+        >
+          <span className="text-[15px] ml-4 text-gray-200 font-bold">
+            Add Secretary
           </span>
         </div>
 
@@ -91,6 +114,8 @@ function Admin() {
             openAddStudent(false);
             openStudentDetails(true);
             openRoomDetails(false);
+            setAddSecretary(false);
+            setGravience(false);
           }}
           className=" px-4 py-3 mt-12 font-bold flex items-center rounded-md  duration-300 cursor-pointer bg-gray-200 hover:bg-yellow-600 text-gray-600 hover:text-gray-100 "
         >
@@ -103,10 +128,26 @@ function Admin() {
             openAddStudent(false);
             openStudentDetails(false);
             openRoomDetails(true);
+            setAddSecretary(false);
+            setGravience(false);
           }}
           className=" px-4 py-3 mt-3 font-bold flex items-center rounded-md  duration-300 cursor-pointer bg-gray-200 hover:bg-yellow-600 text-gray-600 hover:text-gray-100 "
         >
           Room Details
+        </div>
+
+        <div
+          onClick={() => {
+            openRemoveStudent(false);
+            openAddStudent(false);
+            openStudentDetails(false);
+            openRoomDetails(false);
+            setAddSecretary(false);
+            setGravience(true);
+          }}
+          className=" px-4 py-3 mt-3 font-bold flex items-center rounded-md  duration-300 cursor-pointer bg-gray-200 hover:bg-yellow-600 text-gray-600 hover:text-gray-100 "
+        >
+          View Graviences
         </div>
 
         <Link to="/">
@@ -129,9 +170,11 @@ function Admin() {
 
       {addStudent && <AddStudent></AddStudent>}
       {removeStudent && <RemoveStudent></RemoveStudent>}
+      {addSecretary && <AddSecretary></AddSecretary>}
 
       {studentDetails && <StudentDetails></StudentDetails>}
       {roomDetails && <RoomDetails></RoomDetails>}
+      {gravience && <ViewGravieance></ViewGravieance>}
     </div>
   );
 }

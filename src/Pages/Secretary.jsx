@@ -48,13 +48,13 @@ function Secretary() {
               secretary Name
             </span>
             <span className=" font-bold ml-1 text-[12px] bg-green-500 px-4 py-1 rounded-md text-slate-100">
-              Hemant Yadav
+              Nilesh Yadav
             </span>
             <span className="text-[15px] ml-4 text-gray-700 font-bold">
               secretary ID
             </span>
             <span className=" font-bold ml-1 text-[12px] bg-green-500 px-4 py-1 rounded-md text-slate-100">
-              123456789
+              9632587412
             </span>
           </div>
         </div>
@@ -129,7 +129,11 @@ function Secretary() {
       </div>
 
       {addStudent && <ViewPayments></ViewPayments>}
-      {removeStudent && <RemoveStudent></RemoveStudent>}
+      {removeStudent && (
+        <h1 className="ml-64 px-20 py-5 rounded-lg bg-indigo-100 text-indigo-600 ">
+          Only Admin can remove students
+        </h1>
+      )}
 
       {studentDetails && <StudentDetails></StudentDetails>}
       {roomDetails && <RoomDetails></RoomDetails>}

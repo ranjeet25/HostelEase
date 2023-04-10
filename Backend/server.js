@@ -54,9 +54,50 @@ app.post("/register", (req, res) => {
     username: req.body.username,
     password: req.body.pass,
     address: req.body.address,
-  }).catch((err) => console.log(err));
+  })
+    .then((data) => {
+      console.log(data);
+      res.send("ok");
+    })
+    .catch((err) => console.log(err));
 
-  //   console.log("sucess");
+  // console.log("sucess");
+});
+
+// ******* LOGIN ROUTE ***********
+
+var studentEmail;
+app.post("/login", (req, res) => {
+  var email = req.body.email;
+  var password = req.body.pass;
+
+  // console.log(email + password);
+
+  User.findOne({ email: email })
+    .then((data) => {
+      // console.log(data);
+      if (data == null) {
+        res.sendStatus(300);
+      } else if (data.password === password) {
+        studentEmail = data.email;
+        // console.log(data.email);
+        res.send("okk");
+      } else {
+        res.sendStatus(300);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+app.get("/usrData", (Req, res) => {
+  User.find({ email: studentEmail })
+    .then((data) => {
+      // console.log(data);
+      res.send(data);
+    })
+    .catch((err) => console.log(err));
 });
 
 // *******  ROOM DATA ROUTE ***********
@@ -143,7 +184,7 @@ app.post("/addStudent", (req, res) => {
 app.get("/studentData", (Req, res) => {
   StudentDetails.find()
     .then((data) => {
-      studentData = data;
+      studentData = data.reverse();
 
       res.send(studentData);
     })
@@ -152,40 +193,26 @@ app.get("/studentData", (Req, res) => {
 
 app.delete("/studentData", (req, res) => {
   var name = req.body.name;
-  var hostelId = req.body.hostelID;
-
-  StudentDetails.deleteOne({ hostelId: hostelId })
+  var email = req.body.email;
+  // console.log(hostelId);
+  StudentDetails.deleteMany({ email: email })
     .then((data) => {
-      res.send("Student Removed");
-      console.log(data);
+      // res.send("Student Removed");
+      // console.log(data);
     })
     .catch((err) => console.log(err));
 });
 
-// ******* LOGIN ROUTE ***********
-
-var userdata = new Object();
-var studentEmail;
-app.post("/login", (req, res) => {
-  var email = req.body.email;
-  console.log(email);
-  studentEmail = email;
-  var password = req.body.pass;
-
-  User.findOne({ email: email }).then((data) => {
-    userdata = data;
-  });
-});
-
-app.get("/login", (req, res) => {
-  console.log(userdata);
-  res.send(userdata);
-});
+// app.get("/login", (req, res) => {
+//   console.log(userdata);
+//   res.send(userdata);
+// });
 
 app.get("/studentDataByEmail", (Req, res) => {
   StudentDetails.findOne({ email: studentEmail })
     .then((data) => {
       studentData = data;
+      // console.log(studentData);
       res.send(studentData);
     })
     .catch((err) => console.log(err));
@@ -201,6 +228,45 @@ app.put("/login", (req, res) => {
     { password: newpassword },
     { new: true }
   ).catch((err) => console.log(err));
+});
+
+// ******* Grievance ROUTE ***********
+
+const grievanceSchema = new mongoose.Schema({
+  email: String,
+  department: String,
+  complaint: String,
+});
+
+const grievance = mongoose.model("grievance", grievanceSchema);
+
+app.post("/addGrievance", (req, res) => {
+  var email = req.body.email;
+  var oldpassword = req.body.oldPass;
+  var newpassword = req.body.newPass;
+  // console.log(oldpassword);
+
+  grievance
+    .create({
+      email: email,
+      department: oldpassword,
+      complaint: newpassword,
+    })
+    .then((res) => {
+      // console.log(res);
+    })
+    .catch((err) => console.log(err));
+});
+
+app.get("/grievanceData", (req, res) => {
+  grievance
+    .find({})
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 app.listen(port, () => {
