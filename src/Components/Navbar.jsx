@@ -30,7 +30,7 @@ function Navbar() {
             Home
           </a>
           <a
-            href="#"
+            href="#feature"
             className="text-gray-600 hover:text-yellow-500 active:text-yellow-700 text-lg font-semibold transition duration-100"
           >
             Features

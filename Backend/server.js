@@ -77,7 +77,11 @@ app.post("/login", (req, res) => {
     .then((data) => {
       // console.log(data);
       if (data == null) {
-        res.sendStatus(300);
+        if (email == "admin@gmail.com" && password == "Nilesh@123") {
+          res.sendStatus(201);
+        } else if (email == "secretary@gmail.com" && password == "Nilesh@20") {
+          res.sendStatus(202);
+        } else res.sendStatus(300);
       } else if (data.password === password) {
         studentEmail = data.email;
         // console.log(data.email);

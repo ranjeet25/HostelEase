@@ -19,10 +19,16 @@ function Login() {
     }).then((res) => {
       console.log(res.body);
       if (res.status == 200) {
-        alert("Data found");
+        alert("Data found, Welcome User");
         navigate("/student");
+      } else if (res.status == 201) {
+        alert("Welcome Admin");
+        navigate("/admin");
+      } else if (res.status == 202) {
+        alert("Welcome Secretary");
+        navigate("/secretary");
       } else {
-        alert("Wrong username of password");
+        alert("Wrong username or password");
       }
     });
   };
